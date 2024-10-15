@@ -1,13 +1,13 @@
 # enemy.py
 import pygame
 import random
-from .settings import WIDTH, HEIGHT
+from .settings import WIDTH, HEIGHT, ENEMY_WIDTH, ENEMY_HEIGHT, ENEMY_IMAGE
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, speed):
         super().__init__()
-        self.image = pygame.Surface((40, 40))
-        self.image.fill((255, 0, 0))
+        # Cargar la imagen, escalarla y asignarla a self.image
+        self.image = pygame.transform.scale(pygame.image.load(ENEMY_IMAGE).convert_alpha(), (ENEMY_WIDTH//3, ENEMY_HEIGHT//3))
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(0, WIDTH - self.rect.width)
         self.rect.y = random.randint(-100, -40)
